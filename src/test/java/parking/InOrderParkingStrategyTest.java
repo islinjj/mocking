@@ -2,6 +2,8 @@ package parking;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -24,16 +26,25 @@ public class InOrderParkingStrategyTest {
         //when
         Receipt receipt = inOrderParkingStrategy.park(parkingLots, car);
         //then
-         assertEquals("OOCL",receipt.getParkingLotName());
-         assertEquals("bmw",receipt.getCarName());
+        assertEquals("OOCL", receipt.getParkingLotName());
+        assertEquals("bmw", receipt.getCarName());
     }
 
     @Test
-    public void testCreateNoSpaceReceipt_givenACar_thenGiveANoSpaceReceipt() {
-
-        /* Exercise 1, Write a test case on InOrderParkingStrategy.createNoSpaceReceipt()
-         * With using Mockito to mock the input parameter */
-
+    public void should_return_no_parking_lot_when_park_given_parking_lots_all_is_full() {
+        //given
+        InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
+        ParkingLot parkingLot = mock(ParkingLot.class);
+        Car car = mock(Car.class);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        when(parkingLot.getName()).thenReturn("OOCL");
+        when(car.getName()).thenReturn("bmw");
+        when(parkingLot.isFull()).thenReturn(true);
+        parkingLots.add(parkingLot);
+        //when
+        Receipt receipt = inOrderParkingStrategy.park(parkingLots, car);
+        //then
+        assertEquals("No Parking Lot", receipt.getParkingLotName());
     }
 
     @Test
