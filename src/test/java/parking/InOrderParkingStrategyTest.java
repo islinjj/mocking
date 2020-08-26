@@ -1,0 +1,70 @@
+package parking;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.Test;
+
+public class InOrderParkingStrategyTest {
+
+    @Test
+    public void testCreateReceipt_givenACarAndAParkingLog_thenGiveAReceiptWithCarNameAndParkingLotName() {
+        /* Exercise 1, Write a test case on InOrderParkingStrategy.createReceipt()
+         * With using Mockito to mock the input parameter */
+        //given
+        InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
+        ParkingLot parkingLot = mock(ParkingLot.class);
+        Car car = mock(Car.class);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        when(parkingLot.getName()).thenReturn("OOCL");
+        when(car.getName()).thenReturn("bmw");
+        when(parkingLot.isFull()).thenReturn(false);
+        parkingLots.add(parkingLot);
+        //when
+        Receipt receipt = inOrderParkingStrategy.park(parkingLots, car);
+        //then
+         assertEquals("OOCL",receipt.getParkingLotName());
+         assertEquals("bmw",receipt.getCarName());
+    }
+
+    @Test
+    public void testCreateNoSpaceReceipt_givenACar_thenGiveANoSpaceReceipt() {
+
+        /* Exercise 1, Write a test case on InOrderParkingStrategy.createNoSpaceReceipt()
+         * With using Mockito to mock the input parameter */
+
+    }
+
+    @Test
+    public void testPark_givenNoAvailableParkingLot_thenCreateNoSpaceReceipt() {
+
+        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for no available parking lot */
+
+    }
+
+    @Test
+    public void testPark_givenThereIsOneParkingLotWithSpace_thenCreateReceipt() {
+
+        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for one available parking lot */
+
+    }
+
+    @Test
+    public void testPark_givenThereIsOneFullParkingLot_thenCreateReceipt() {
+
+        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for one available parking lot but it is full */
+
+    }
+
+    @Test
+    public void testPark_givenThereIsMultipleParkingLotAndFirstOneIsFull_thenCreateReceiptWithUnfullParkingLot() {
+
+        /* Exercise 3: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for multiple parking lot situation */
+
+    }
+
+
+}
