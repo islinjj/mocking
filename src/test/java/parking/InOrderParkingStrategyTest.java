@@ -11,9 +11,7 @@ import org.junit.Test;
 public class InOrderParkingStrategyTest {
 
     @Test
-    public void testCreateReceipt_givenACarAndAParkingLog_thenGiveAReceiptWithCarNameAndParkingLotName() {
-        /* Exercise 1, Write a test case on InOrderParkingStrategy.createReceipt()
-         * With using Mockito to mock the input parameter */
+    public void should_return_receipt_when_park_given_1_car_and_1_parking_lot() {
         //given
         InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
         ParkingLot parkingLot = mock(ParkingLot.class);
