@@ -17,8 +17,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import sales.EcmService;
 import sales.SalesApp;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(value = {InOrderParkingStrategy.class})
 public class InOrderParkingStrategyTest {
 
     @Test
