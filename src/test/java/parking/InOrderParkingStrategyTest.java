@@ -1,7 +1,9 @@
 package parking;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -9,7 +11,14 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import sales.EcmService;
+import sales.SalesApp;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(value = {InOrderParkingStrategy.class})
 public class InOrderParkingStrategyTest {
 
     @Test
@@ -48,10 +57,20 @@ public class InOrderParkingStrategyTest {
     }
 
     @Test
-    public void testPark_givenNoAvailableParkingLot_thenCreateNoSpaceReceipt() {
-
-        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for no available parking lot */
-
+    public void should_execute_create_no_space_receipt_time_1_when_park_given_no_available_parking_lot_and_1_car() {
+        //given
+        InOrderParkingStrategy inOrderParkingStrategy = spy(new InOrderParkingStrategy());
+        Car car = mock(Car.class);
+        when(car.getName()).thenReturn("bmw");
+        ParkingLot parkingLot = mock(ParkingLot.class);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        when(parkingLot.getName()).thenReturn("OOCL");
+        when(parkingLot.isFull()).thenReturn(true);
+        parkingLots.add(parkingLot);
+        //when
+        inOrderParkingStrategy.park(parkingLots, car);
+        //then
+        verify(inOrderParkingStrategy,times(1)).createNoSpaceReceipt(car);
     }
 
     @Test
