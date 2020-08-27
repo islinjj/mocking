@@ -3,6 +3,7 @@ package parking;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -20,17 +21,28 @@ public class VipParkingStrategyTest {
         when(parkingLot.getName()).thenReturn("OOCL");
         doReturn(true).when(vipParkingStrategy).isAllowOverPark(any());
         ///when
-        Receipt receipt = vipParkingStrategy.park(Collections.singletonList(parkingLot), createMockCar(carName));
+        Receipt receipt = vipParkingStrategy
+            .park(Collections.singletonList(parkingLot), createMockCar(carName));
         //then
-        verify(vipParkingStrategy).createReceipt(any(ParkingLot.class),any(Car.class));
-        assertEquals("OOCL",receipt.getParkingLotName());
+        verify(vipParkingStrategy).createReceipt(any(ParkingLot.class), any(Car.class));
+        assertEquals("OOCL", receipt.getParkingLotName());
     }
 
     @Test
-    public void testPark_givenCarIsNotVipAndAFullParkingLog_thenGiveNoSpaceReceipt() {
-
-        /* Exercise 4, Write a test case on VipParkingStrategy.park()
-         * With using Mockito spy, verify and doReturn */
+    public void should_return_no_parking_lot_when_park_given_full_parking_lot() {
+        //given
+        String carName = "bmw";
+        VipParkingStrategy vipParkingStrategy = spy(new VipParkingStrategy());
+        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+        when(parkingLot.getName()).thenReturn("OOCL");
+        when(parkingLot.isFull()).thenReturn(true);
+        doReturn(false).when(vipParkingStrategy).isAllowOverPark(any());
+        ///when
+        Receipt receipt = vipParkingStrategy
+            .park(Collections.singletonList(parkingLot), createMockCar(carName));
+        //then
+        verify(vipParkingStrategy).createNoSpaceReceipt(any(Car.class));
+        assertEquals("No Parking Lot", receipt.getParkingLotName());
     }
 
     @Test
