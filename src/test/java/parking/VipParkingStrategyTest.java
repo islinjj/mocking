@@ -26,6 +26,10 @@ public class VipParkingStrategyTest {
 
     @Test
     public void should_return_receipt_and_execute_create_receipt_when_park_given_a_full_parking_lot_and_a_vip() {
+
+        /* Exercise 4, Write a test case on VipParkingStrategy.park()
+         * With using Mockito spy, verify and doReturn */
+
         //given
         String carName = "bmw";
         VipParkingStrategy vipParkingStrategy = spy(new VipParkingStrategy());
@@ -42,6 +46,10 @@ public class VipParkingStrategyTest {
 
     @Test
     public void should_return_no_parking_lot_when_park_given_full_parking_lot_and_not_vip() {
+
+        /* Exercise 4, Write a test case on VipParkingStrategy.park()
+         * With using Mockito spy, verify and doReturn */
+
         //given
         String carName = "bmw";
         VipParkingStrategy vipParkingStrategy = spy(new VipParkingStrategy());
