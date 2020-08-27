@@ -5,12 +5,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class VipParkingStrategyTest {
+
+    @Mock
+    CarDao carDao;
+    @InjectMocks
+    VipParkingStrategy vipParkingStrategy;
 
     @Test
     public void should_return_receipt_and_execute_create_receipt_when_park_given_a_full_parking_lot_and_a_vip() {
@@ -29,7 +40,7 @@ public class VipParkingStrategyTest {
     }
 
     @Test
-    public void should_return_no_parking_lot_when_park_given_full_parking_lot() {
+    public void should_return_no_parking_lot_when_park_given_full_parking_lot_and_not_vip() {
         //given
         String carName = "bmw";
         VipParkingStrategy vipParkingStrategy = spy(new VipParkingStrategy());
@@ -46,12 +57,20 @@ public class VipParkingStrategyTest {
     }
 
     @Test
-    public void testIsAllowOverPark_givenCarNameContainsCharacterAAndIsVipCar_thenReturnTrue() {
+    public void should_return_true_when_check_over_park_given_1_car_and_1_vip() {
 
         /* Exercise 5, Write a test case on VipParkingStrategy.isAllowOverPark()
          * You may refactor the code, or try to use
-         * use @RunWith(MockitoJUnitRunner.class), @Mock (use Mockito, not PowerMock) and @InjectMocks
+         * use @RunWith(MockitoJUnitRunner.class), @InjectMocks
+        CarDao carDao;@Mock (use Mockito, not PowerMock) and @InjectMocks
          */
+        //given
+        Car car = createMockCar("A");
+        when(carDao.isVip(any())).thenReturn(true);
+        //when
+        boolean isAllowOverPark = vipParkingStrategy.isAllowOverPark(car);
+        //then
+        assertTrue(isAllowOverPark);
     }
 
     @Test
