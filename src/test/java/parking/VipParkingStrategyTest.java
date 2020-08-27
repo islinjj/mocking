@@ -91,7 +91,7 @@ public class VipParkingStrategyTest {
     }
 
     @Test
-    public void should_return_false_when_check_over_park_given_1_car_with_name_contain_B_and_1_no_vip() {
+    public void should_return_false_when_check_over_park_given_1_car_with_name_contain_A_and_1_no_vip() {
         /* Exercise 5, Write a test case on VipParkingStrategy.isAllowOverPark()
          * You may refactor the code, or try to use
          * use @RunWith(MockitoJUnitRunner.class), @Mock (use Mockito, not PowerMock) and @InjectMocks
@@ -106,11 +106,18 @@ public class VipParkingStrategyTest {
     }
 
     @Test
-    public void testIsAllowOverPark_givenCarNameDoesNotContainsCharacterAAndIsNotVipCar_thenReturnFalse() {
+    public void should_return_false_when_check_over_park_given_1_car_with_name_contain_B_and_1_no_vip() {
         /* Exercise 5, Write a test case on VipParkingStrategy.isAllowOverPark()
          * You may refactor the code, or try to use
          * use @RunWith(MockitoJUnitRunner.class), @Mock (use Mockito, not PowerMock) and @InjectMocks
          */
+        //given
+        Car car = createMockCar("B");
+        when(carDao.isVip(any())).thenReturn(false);
+        //when
+        boolean isAllowOverPark = vipParkingStrategy.isAllowOverPark(car);
+        //then
+        assertFalse(isAllowOverPark);
     }
 
     private Car createMockCar(String carName) {
