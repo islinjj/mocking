@@ -17,6 +17,10 @@ public class VipParkingStrategyPowerMockTest {
 
     @Test
     public void should_return_40_when_calculate_hourly_price_given_basic_hourly_price_20() {
+
+        /* Exercise 6: Write test case for VipParkingStrategy calculateHourlyPrice
+         * by using PowerMock to mock static method */
+
         //given
         VipParkingStrategy vipParkingStrategy = new VipParkingStrategy();
         mockStatic(ParkingLot.class);
@@ -29,6 +33,10 @@ public class VipParkingStrategyPowerMockTest {
 
     @Test
     public void should_return_50_when_calculate_hourly_price_given_not_sunday() {
+
+        /* Exercise 6: Write test case for VipParkingStrategy calculateHourlyPrice
+         * by using PowerMock to mock static method */
+
         //given
         VipParkingStrategy vipParkingStrategy = new VipParkingStrategy();
         mockStatic(ParkingLot.class);
