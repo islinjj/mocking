@@ -21,6 +21,10 @@ public class InOrderParkingStrategyTest {
 
     @Test
     public void should_return_receipt_when_park_given_1_car_and_1_parking_lot() {
+
+        /* Exercise 1, Write a test case on InOrderParkingStrategy.createReceipt()
+         * With using Mockito to mock the input parameter */
+
         //given
         InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
         ParkingLot parkingLot = mock(ParkingLot.class);
@@ -39,6 +43,11 @@ public class InOrderParkingStrategyTest {
 
     @Test
     public void should_return_no_parking_lot_when_park_given_parking_lots_all_is_full() {
+
+        /* Exercise 1, Write a test case on InOrderParkingStrategy.createNoSpaceReceipt()
+         * With using Mockito to mock the input parameter */
+
+
         //given
         InOrderParkingStrategy inOrderParkingStrategy = new InOrderParkingStrategy();
         ParkingLot parkingLot = mock(ParkingLot.class);
@@ -56,6 +65,9 @@ public class InOrderParkingStrategyTest {
 
     @Test
     public void should_execute_create_no_space_receipt_time_1_when_park_given_no_available_parking_lot_and_1_car() {
+
+        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for no available parking lot */
+
         //given
         InOrderParkingStrategy inOrderParkingStrategy = spy(new InOrderParkingStrategy());
         Car car = mock(Car.class);
@@ -69,6 +81,9 @@ public class InOrderParkingStrategyTest {
 
     @Test
     public void should_exe_createReceipt_time_1_when_park_given_available_parking_lot_and_1_car() {
+
+        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for one available parking lot */
+
         //given
         InOrderParkingStrategy inOrderParkingStrategy = spy(new InOrderParkingStrategy());
         Car car = mock(Car.class);
@@ -86,6 +101,9 @@ public class InOrderParkingStrategyTest {
 
     @Test
     public void should_execute_create_no_space_receipt_time_1_when_park_given_an_available_parking_lot_but_is_full_and_1_car() {
+
+        /* Exercise 2: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for one available parking lot but it is full */
+
         //given
         InOrderParkingStrategy inOrderParkingStrategy = spy(new InOrderParkingStrategy());
         Car car = mock(Car.class);
@@ -103,6 +121,9 @@ public class InOrderParkingStrategyTest {
 
     @Test
     public void should_exec_createReceipt_time_1_when_park_given_multi_parking_lot_with_space() {
+
+        /* Exercise 3: Test park() method. Use Mockito.spy and Mockito.verify to test the situation for multiple parking lot situation */
+
         //given
         InOrderParkingStrategy inOrderParkingStrategy = spy(new InOrderParkingStrategy());
         Car car = mock(Car.class);
