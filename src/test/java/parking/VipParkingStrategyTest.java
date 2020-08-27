@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -57,7 +58,7 @@ public class VipParkingStrategyTest {
     }
 
     @Test
-    public void should_return_true_when_check_over_park_given_1_car_and_1_vip() {
+    public void should_return_true_when_check_over_park_given_1_car_with_name_contain_A_and_1_vip() {
 
         /* Exercise 5, Write a test case on VipParkingStrategy.isAllowOverPark()
          * You may refactor the code, or try to use
@@ -74,12 +75,19 @@ public class VipParkingStrategyTest {
     }
 
     @Test
-    public void testIsAllowOverPark_givenCarNameDoesNotContainsCharacterAAndIsVipCar_thenReturnFalse() {
+    public void should_return_false_when_check_over_park_given_1_car_with_name_contain_B_and_1_vip() {
 
         /* Exercise 5, Write a test case on VipParkingStrategy.isAllowOverPark()
          * You may refactor the code, or try to use
          * use @RunWith(MockitoJUnitRunner.class), @Mock (use Mockito, not PowerMock) and @InjectMocks
          */
+        //given
+        Car car = createMockCar("B");
+        when(carDao.isVip(any())).thenReturn(true);
+        //when
+        boolean isAllowOverPark = vipParkingStrategy.isAllowOverPark(car);
+        //then
+        assertFalse(isAllowOverPark);
     }
 
     @Test
